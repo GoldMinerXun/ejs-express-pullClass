@@ -1,0 +1,121 @@
+body,
+html {
+  height: 100%;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+}
+.wrap {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 100%;
+}
+.left-wrap {
+  width: 30vw;
+  height: 100%;
+  background-color: white;
+}
+.left-wrap .title {
+  height: 45%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.left-wrap .title span {
+  font-size: 30px;
+  font-weight: 300;
+}
+.left-wrap .form-wrap {
+  height: 55%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.left-wrap .form-wrap .input-wrap {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1.5em;
+}
+.left-wrap .form-wrap .input-wrap .name-input,
+.left-wrap .form-wrap .input-wrap .password-input {
+  background-color: rgba(0, 0, 0, 0.1);
+  border: 1px solid #eee;
+  font-size: 16px;
+  color: #888;
+  margin-top: 2em;
+  padding: 0.5em;
+  box-sizing: content-box;
+  border-radius: 5px;
+  outline: none;
+  text-indent: 0.5em;
+  transition: all .3s;
+}
+.left-wrap .form-wrap .input-wrap .name-input:focus,
+.left-wrap .form-wrap .input-wrap .password-input:focus {
+  background-color: white;
+}
+.left-wrap .form-wrap .input-wrap .wrong-input {
+  border: 1px solid rgba(255, 0, 0, 0.568);
+  box-shadow: 0px 0px 6px rgba(255, 0, 0, 0.404);
+}
+.left-wrap .form-wrap .input-wrap .name-input-wrap {
+  position: relative;
+}
+.left-wrap .form-wrap .input-wrap .exist-name {
+  position: absolute;
+  bottom: -25px;
+  left: 0px;
+  font-size: 14px;
+  color: #ff5e00;
+  text-indent: 1.3em;
+  font-weight: 300;
+}
+.left-wrap .form-wrap .btn-wrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.left-wrap .form-wrap .btn-wrap button {
+  width: 13em;
+  background-color: #45b787;
+  outline: none;
+  color: white;
+  font-size: 16px;
+  border: none;
+  padding: 0.3em;
+  border-radius: 0.3em;
+  cursor: pointer;
+  transition: all .3s;
+}
+.left-wrap .form-wrap .btn-wrap button:hover {
+  background-color: #83cbac;
+}
+.left-wrap .form-wrap .btn-wrap .register {
+  width: 100%;
+  display: flex;
+  flex-direction: row-reverse;
+}
+.left-wrap .form-wrap .btn-wrap .register a {
+  font-size: 14px;
+  margin-top: 0.5em;
+  text-decoration: underline;
+  color: #666;
+  cursor: pointer;
+  outline: none;
+  background-color: white;
+  padding: 0px;
+  text-align: right;
+}
+.right-wrap {
+  width: 70vw;
+  height: 100%;
+}
+.right-wrap img {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}

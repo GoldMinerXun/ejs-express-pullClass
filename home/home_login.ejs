@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/home.css">
+</head>
+
+<body>
+    <div class="wrap">
+        <div class="left-wrap">
+            <div class="title">
+                <span>Tree Hole</span>
+            </div>
+            <form action="/login" method="post">
+                <div class="form-wrap">
+
+                    <div class="input-wrap">
+                        <div class="name-input-wrap">
+                            <input class="name-input " type="text" placeholder="username" name="username">
+                            
+                            <span class="exist-name" style=<%=data?"opacity:1":"opacity:0"%>>用户名/密码错误</span>
+                        </div>
+                        <input class="password-input " type="password" placeholder="password" name="password" id="">
+                    </div>
+                    <div class="btn-wrap">
+                        <button class="login" type="submit">Login</button>
+                        <div class="register"><a href="/register">Register</a></div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="right-wrap">
+            <img src="./image/nature2.jpg" alt="">
+        </div>
+    </div>
+
+</body>
+
+</html>
