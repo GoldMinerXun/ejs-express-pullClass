@@ -463,6 +463,7 @@ body {
   font-weight: 600;
   font-size: 18px;
   transition: all .3s;
+  text-align:center;
 }
 .pull-mask-classes .classes-wrap .classes-item .remove-class-item:hover {
   font-weight: 700;

@@ -219,7 +219,7 @@
         }
 
     }
-    if (localStorage.getItem('classtime').length != 2) {
+    if (localStorage.getItem('classtime')&&localStorage.getItem('classtime').length!=2) {
         var resultlocal = JSON.parse(localStorage.getItem('classtime'));
         var restemp = handlepullclass(resultlocal)
         var res = handleclasstime(restemp);

@@ -1,6 +1,9 @@
 class CookieTools {
     constructor(objectid) {
-        this.objectid = objectid.toString();
+        if(objectid){
+            this.objectid = objectid.toString();
+        }
+      
     }
     randomString() {
         var sixRandomWords = '';
@@ -21,6 +24,16 @@ class CookieTools {
     produceCookie() {
         var cookiestr = 'CoolClassTable' + this.objectid + this.randomString();
         return cookiestr;
+    }
+    parserCookie(str){
+        var cookiestr=str;
+        if(str.length>0){
+            var objectid=cookiestr.slice(14,38);
+            return objectid;
+        }else{
+            return false;
+        }
+        
     }
 }
 exports.CookieTools = CookieTools;

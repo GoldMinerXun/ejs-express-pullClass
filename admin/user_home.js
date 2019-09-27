@@ -45,7 +45,6 @@ var renderexistclasses = function () {
         var restemp = handlepullclass(classtimes)
         var res = handleclasstime(restemp);
         for(let i=0;i<res.length;i++){
-            console.log(res[i].classname)
             if(res[i].classtime[1]!=undefined&&res[i].classtime[2]!=undefined){
                 var idname = '#item-' + res[i].classtime[1] + '-' + res[i].classtime[2];
                 if ($(idname).html().length==0) {
@@ -54,10 +53,7 @@ var renderexistclasses = function () {
                     <span class="place classcontent">`+( res[i].place==undefined?``:res[i].place )+ `</span>
                     <span class="classtime classcontent">`+ handleweektostring(res[i].classtime[0])+ `</span>`
                     $(idname).css('background-color', '#3f72af');
-                    console.log(idname)
                     $(idname).html(html);
-                    console.log(html)
-                    console.log('ok')
                 }
             }
            
@@ -361,7 +357,6 @@ okBtn.addEventListener('click', function () {
             errorMessageWrap.style.display = 'none';
         }, 3000)
     }
-
 })
 var renderaddclass = function (res) {
     for (let i = 0; i < res.length; i++) {
