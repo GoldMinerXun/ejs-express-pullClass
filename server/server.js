@@ -77,7 +77,7 @@ app.post('/login', urlencoded, function (req, res) {
                 var objectID = data[0]._id;
                 var cookieProduce = new CookieTools(objectID);
                 var setcookie = cookieProduce.produceCookie();
-                res.cookie(setcookie);
+                res.setHeader('Set-Cookie',setcookie+';path=/;httponly');
                 res.redirect('/admin?username=' + data[0].username);
             }
             else {
@@ -259,11 +259,13 @@ app.post('/postToPullClass', urlencoded, function (req, res) {
                     var result = $.text().toString();
                     // console.log($)
                     if (new RegExp('用户名或密码错误').test(result)) {
-                        res.redirect('http://localhost:3010/admin/?username=' + username + '&error=3');
-                        reject('err')
+                        console.log(111)
+                        res.redirect('./admin?username=' + username + '&error=3');
+                        // reject('err')
                     } else if (new RegExp('验证码不正确').test(result)) {
-                        res.redirect('http://localhost:3010/admin/?username=' + username + '&error=4');
-                        reject('err')
+                        console.log(222)
+                        res.redirect('./admin?username=' + username + '&error=4');
+                        // reject('err')
                     }
 
                 })
@@ -287,8 +289,8 @@ app.post('/postToPullClass', urlencoded, function (req, res) {
 
                 var handlecookie2 = response2.headers['set-cookie'];
                 if (handlecookie2 == undefined) {
-                    res.redirect('http://localhost:3010/admin/?username=' + username + '&error=4');
-                    reject('err')
+                    res.redirect('./admin?username=' + username + '&error=4');
+                    // reject('err')
                 } else {
                     var cookie2 = handlecookie2[0].split(';')[0];
 
@@ -362,4 +364,4 @@ app.post('/postToPullClass', urlencoded, function (req, res) {
 
     })
 })
-app.listen(3010);
+app.listen(3011);

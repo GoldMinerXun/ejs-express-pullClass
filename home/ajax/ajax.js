@@ -24,7 +24,6 @@ var ajaxRequestMongo = function (name) {
 
 
 nameInput.addEventListener('blur', function () {
-
     var promise = new Promise((resolve, reject) => {
         var username = nameInput.value;
         resolve(username)
