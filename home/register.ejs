@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
 
@@ -91,4 +92,99 @@
     
 </script>
 
+=======
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/home.css">
+    <script src="./ajax/jquery-2.1.0.js"></script>
+</head>
+
+<body>
+    <div class="wrap">
+        <div class="left-wrap">
+            <div class="title">
+                <span>Tree Hole</span>
+            </div>
+            <form action="/register" method="post">
+                <div class="form-wrap">
+                    <div class="input-wrap">
+                        <div class="name-input-wrap">
+                            <input class="name-input " type="text" placeholder="username" name="username">
+                            <!-- -->
+                        </div>
+                        <input class="password-input " id="password-input" type="password" placeholder="password"
+                            name="password" id="">
+                        <input class="password-input " id="confirmpassword-input" type="password" placeholder="password"
+                            name="confirmpassword" id="">
+                    </div>
+                    <div class="btn-wrap">
+                        <button class="login" type="submit">Register</button>
+                        <div class="register"><a href="/">Login</a></div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="right-wrap">
+            <img src="./image/nature2.jpg" alt="">
+        </div>
+    </div>
+
+</body>
+<script src="./ajax/ajax.js"></script>
+<script>
+    var passwordInput = document.getElementsByClassName('password-input')[0];
+    var confirmPassword = document.getElementsByClassName('password-input')[1];
+    var registerBtn = document.getElementsByClassName('login')[0];
+    var usernameInput = document.getElementsByClassName('name-input')[0]
+    passwordInput.addEventListener('input', function () {
+        // console.log(registerBtn.disabled)
+        if (usernameInput.value != '' && passwordInput.value != '' && passwordInput.value == confirmPassword.value) {
+            confirmPassword.classList = 'password-input'
+            registerBtn.disabled = false
+            registerBtn.style.cursor = 'pointer';
+
+        } else {
+            confirmPassword.classList = 'password-input wrong-input'
+            registerBtn.disabled = true;
+            registerBtn.style.cursor = 'not-allowed';
+        }
+    })
+    confirmPassword.addEventListener('input', function () {
+        console.log(registerBtn.disabled)
+        if (passwordInput != '' && passwordInput.value == confirmPassword.value) {
+            confirmPassword.classList = 'password-input'
+            registerBtn.disabled = false
+            registerBtn.style.cursor = 'pointer';
+
+        } else {
+            confirmPassword.classList = 'password-input wrong-input'
+            registerBtn.disabled = true;
+            registerBtn.style.cursor = 'not-allowed';
+        }
+    })
+
+    function debounce(fn, wait) {
+        var timeout = null;
+        return function () {
+            if (timeout !== null) clearTimeout(timeout);
+            timeout = setTimeout(fn, wait);
+        }
+    }
+    var checkInput=function(){
+        if(usernameInput.value==''||passwordInput.value==''||confirmPassword.value==''){
+            registerBtn.style.cursor = 'not-allowed';
+            registerBtn.disabled = true;
+        }
+    }
+    registerBtn.addEventListener('mouseenter',checkInput())
+    
+</script>
+
+>>>>>>> 0b0c8f7a921ef6c9dd2b2133a1b1a470b4453ce0
 </html>
