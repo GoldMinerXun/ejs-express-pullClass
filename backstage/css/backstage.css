@@ -1,0 +1,59 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+.back-stage-nav {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 12px 5%;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.18);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  min-width: 1000px;
+}
+.back-stage-nav .back-stage-left {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+.back-stage-nav .back-stage-left .back-stage-avator {
+  border-radius: 50%;
+  height: 40px;
+  width: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 20px;
+}
+.back-stage-nav .back-stage-left .back-stage-avator .back-stage-img {
+  box-sizing: content-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+.back-stage-nav .back-stage-left .back-stage-name {
+  margin-bottom: 3px;
+  font-size: 18px;
+  font-weight: 300;
+}
+.back-stage-nav .back-stage-btn-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.back-stage-nav .back-stage-btn-wrap .back-stage-btn {
+  font-size: 16px;
+  font-weight: 300;
+  text-decoration: underline;
+  color: #333;
+  transition: all .3s;
+  cursor: pointer;
+  margin-left: 2em;
+}
+.back-stage-nav .back-stage-btn-wrap .back-stage-btn:hover {
+  color: #000;
+  transform: translateY(3px);
+}

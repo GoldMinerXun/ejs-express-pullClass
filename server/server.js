@@ -19,13 +19,10 @@ app.use(express.static('../server'));
 app.use(express.static('../home'));
 app.use(express.static('../admin/'));
 app.use('/admin', require('./admin'));
-
+app.use(express.static('../backstage/'))
 
 user = new MongoControl('class', 'user');
-// 查询user表中所有记录
-// user.find({}, function (err, mongoData) {
-//     console.log(mongoData)
-// })
+
 var cookie;
 // 主页重定向
 app.get('/', function (req, res) {
@@ -365,4 +362,15 @@ app.post('/postToPullClass', urlencoded, function (req, res) {
     })
 })
 
+app.get('/back',function(req,res){
+    // cookie检查
+    // console.log(111)
+    ejs.renderFile('../backstage/index.ejs',{},function(err,result){
+        if(err){
+            console.log(err)
+        }else{
+            res.send(result)
+        }
+    })
+})
 app.listen(3011);
