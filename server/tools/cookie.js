@@ -28,12 +28,17 @@ class CookieTools {
     }
     parserCookie(str){
         var cookiestr=str;
-        if(str.length>0){
-            var objectid=cookiestr.slice(14,38);
-            return objectid;
+        if(str){
+            if(str.length>0){
+                var objectid=cookiestr.slice(14,38);
+                return objectid;
+            }else{
+                return false;
+            }
         }else{
             return false;
         }
+        
         
     }
 }

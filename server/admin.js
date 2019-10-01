@@ -36,8 +36,13 @@ router.get('/', function (req, res) {
         promise.then((result) => {
             if (result.length > 0) {
                 var str = result[0].classtime;
-                var handlemongoData = new HandleClassTables();
-                var classtime = handlemongoData.handlemongoclasstime(str);
+                if (str) {
+                    var handlemongoData = new HandleClassTables();
+                    var classtime = handlemongoData.handlemongoclasstime(str);
+                } else {
+                    var classtime = "";
+                }
+
                 // console.log(result)
                 return new Promise((resolve, reject) => {
                     ejs.renderFile('../admin/user_home.ejs',
@@ -71,14 +76,17 @@ router.get('/', function (req, res) {
 
 })
 router.get('/hascourses', function (req, res) {
+    var cookie = req.headers.cookie;
     var username = req.query.username;
     var nowweek = req.query.nowweek;
     var errorcode = req.query.error;
     var codenum = 0;
+    var cookieTools = new CookieTools();
+    var cookieParser = cookieTools.parserCookie(cookie)
     if (errorcode != undefined) {
         var codenum = errorcode;
     }
-    if (username) {
+    if (username && cookieParser) {
         var promise = new Promise((resolve, reject) => {
             user = new MongoControl('class', 'user');
             user.find({ username: username }, function (err, mongoData) {

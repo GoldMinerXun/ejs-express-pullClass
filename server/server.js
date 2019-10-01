@@ -18,8 +18,9 @@ const querystring = require('querystring')
 app.use(express.static('../server'));
 app.use(express.static('../home'));
 app.use(express.static('../admin/'));
-app.use('/admin', require('./admin'));
 app.use(express.static('../backstage/'))
+app.use('/admin', require('./admin'));
+app.use('/back',require('./back'));
 
 user = new MongoControl('class', 'user');
 
@@ -105,14 +106,28 @@ app.get('/register', function (req, res) {
 app.post('/register', urlencoded, function (req, res) {
     var username = req.body.username;
     var password = req.body.password;
-
-    user.insert({ username: username, password: password }, function (err, mongoData) {
-        if (err) {
-            console.log(err)
-            res.redirect('/register?error=1')
-        } else {
-            res.redirect('/admin?username=' + username);
-        }
+    var promise= new Promise((resolve,reject)=>{
+        user.insert({ username: username, password: password }, function (err, mongoData) {
+            if (err) {
+                resolve(false);
+            } else {
+                resolve(mongoData)
+                // res.redirect('/admin?username=' + username);
+            }
+        })
+    })
+    promise.then((result)=>{
+        return new Promise((resolve,reject)=>{
+            if(result){
+                var objectID=result.ops[0]._id;
+                var cookieProduce = new CookieTools(objectID);
+                var setcookie = cookieProduce.produceCookie();
+                res.setHeader('Set-Cookie',setcookie+';path=/;httponly');
+                res.redirect('/admin?username=' + result.ops[0].username);
+            }else{
+                res.redirect('/register?error=1');
+            }
+        })
     })
 })
 // 检查是否重名
@@ -149,7 +164,7 @@ app.get('/pullClass', function (req, res) {
         var html = '';
         reshttp.on('data', function (data) {
             html += data;
-            // console.log(html);
+            console.log(html);
 
         })
         reshttp.on('end', function () {
@@ -362,15 +377,5 @@ app.post('/postToPullClass', urlencoded, function (req, res) {
     })
 })
 
-app.get('/back',function(req,res){
-    // cookie检查
-    // console.log(111)
-    ejs.renderFile('../backstage/index.ejs',{},function(err,result){
-        if(err){
-            console.log(err)
-        }else{
-            res.send(result)
-        }
-    })
-})
+
 app.listen(3011);

@@ -15,7 +15,7 @@ class Client{
     insert(data, callback) {
         MongoClient.connect(url, { useNewUrlParser: true }, (err, client) => {
             var db = client.db(this.dbName)
-            db.collection(this.collName).insert(data, function (err, res) {
+            db.collection(this.collName).insertOne(data, function (err, res) {
                 callback(err, res)
                 client.close();
             })

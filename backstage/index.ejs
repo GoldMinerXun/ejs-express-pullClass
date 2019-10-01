@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,14 +8,15 @@
     <title>Document</title>
     <link rel="stylesheet" href="./css/backstage.css">
 </head>
+
 <body>
-    <div class="back-stage-nav">
+    <div class="back-stage-nav" style=<%=!isLogin?'display:none':'display:flex'%>>
         <div class="back-stage-left">
             <div class="back-stage-avator">
                 <img class="back-stage-img" src="./img/menu.png">
             </div>
             <div class="back-stage-name">
-                System Manager 
+                System Manager
             </div>
         </div>
         <div class="back-stage-btn-wrap">
@@ -23,5 +25,18 @@
             <span class="back-stage-btn back-stage-aboutus">About Me</span>
         </div>
     </div>
+    <div class="back-stage-pull-mask" style=<%=isLogin?'display:none':'display:flex'%>>
+        <div class="back-stage-pull-wrap">
+            <div class="back-stage-password-input">
+                <span>please input administrator's password</span>
+                <input type="password">
+                
+            </div>
+            <div class="back-stage-btn-wrap">
+                <button>submit</button>
+            </div>
+        </div>
+    </div>
 </body>
+
 </html>

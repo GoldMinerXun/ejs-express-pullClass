@@ -171,22 +171,17 @@ body {
   border-radius: 50%;
   height: 40px;
   width: 40px;
-  border: 1px solid #eee;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-right: 10px;
+  margin-right: 20px;
 }
 .user-home-wrap .user-home-nav .user-home-left .user-home-avator .user-home-img {
   box-sizing: content-box;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 20px;
-  padding: 5px;
-  border-radius: 50%;
-  color: rgba(150, 236, 22, 0.644);
-  font-weight: 600;
+  width: 100%;
 }
 .user-home-wrap .user-home-nav .user-home-left .user-home-name {
   margin-bottom: 3px;
