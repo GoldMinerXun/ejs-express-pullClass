@@ -6,13 +6,14 @@ var logoutbtn = document.getElementsByClassName('user-home-logout')[0];
 var img=document.getElementsByClassName('pull-checkcode-img')[0];
 
 img.addEventListener('click',function(){
+    console.log('img-click')
     $.ajax({
         type:'get',
         url:'/pullClass',
         async:true,
         success:function(result){
             if(result){
-                // console.log('img-ok')
+                console.log('img-ok')
                 checkcodeimg.src = '../checkcodeimg/name.jpg'
             }
         },
