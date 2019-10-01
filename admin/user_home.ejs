@@ -206,6 +206,9 @@
             case '4':
                 errorcontent = '拉取失败';
                 break;
+            case '5':
+                errorContent = '验证码刷新失败';
+                break;
             default:
                 break;
         }
@@ -219,7 +222,7 @@
         }
 
     }
-    if (localStorage.getItem('classtime')&&localStorage.getItem('classtime').length!=2) {
+    if (localStorage.getItem('classtime') && localStorage.getItem('classtime').length != 2) {
         var resultlocal = JSON.parse(localStorage.getItem('classtime'));
         var restemp = handlepullclass(resultlocal)
         var res = handleclasstime(restemp);
@@ -237,4 +240,3 @@
     }
 
 </script>
-

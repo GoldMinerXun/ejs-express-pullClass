@@ -34,6 +34,8 @@ app.get('/', function (req, res) {
         res.send(result)
     })
 })
+
+
 // 直接到登录页时是否登陆出错
 app.get('/login', function (req, res) {
     var errorcode = req.query.error;
@@ -84,7 +86,9 @@ app.post('/login', urlencoded, function (req, res) {
         })
     })
 })
-// 注册失败----未完成
+
+
+// 注册失败
 app.get('/register', function (req, res) {
     var errorcode = req.query.error;
     if (errorcode == 1) {
@@ -130,6 +134,8 @@ app.post('/register', urlencoded, function (req, res) {
         })
     })
 })
+
+
 // 检查是否重名
 app.get('/isNameExist', function (req, res) {
     var username = req.query.username;
@@ -159,9 +165,11 @@ app.get('/isNameExist', function (req, res) {
 
 })
 
+
 // 拉取课表--模拟登陆教务在线
 app.get('/pullClass', function (req, res) {
     http.get('http://jwzx.hrbust.edu.cn/academic/common/security/login.jsp', function (reshttp) {
+        console.log('pullhttp-ok')
         var html = '';
         reshttp.on('data', function (data) {
             html += data;
@@ -218,6 +226,8 @@ app.get('/pullClass', function (req, res) {
 
     })
 })
+
+
 // 拉取课表成功
 app.post('/postToPullClass', urlencoded, function (req, res) {
     var j_username = req.body.studentid;
