@@ -158,6 +158,7 @@ app.get('/isNameExist', function (req, res) {
     })
 
 })
+
 // 拉取课表--模拟登陆教务在线
 app.get('/pullClass', function (req, res) {
     http.get('http://jwzx.hrbust.edu.cn/academic/common/security/login.jsp', function (reshttp) {

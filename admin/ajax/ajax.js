@@ -16,7 +16,7 @@ img.addEventListener('click',function(){
                 checkcodeimg.src = '../checkcodeimg/name.jpg'
             }
         },
-        error:function(err){
+        error:function(error){
             alert(error.status + "" + error.statusText);
         }
     })
