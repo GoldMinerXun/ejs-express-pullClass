@@ -12,6 +12,7 @@ img.addEventListener('click',function(){
         async:true,
         success:function(result){
             if(result){
+                console.log('img-ok')
                 checkcodeimg.src = '../checkcodeimg/name.jpg'
             }
         },
