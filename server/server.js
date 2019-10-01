@@ -164,7 +164,7 @@ app.get('/pullClass', function (req, res) {
         var html = '';
         reshttp.on('data', function (data) {
             html += data;
-            console.log(html);
+            // console.log(html);
 
         })
         reshttp.on('end', function () {
@@ -201,6 +201,7 @@ app.get('/pullClass', function (req, res) {
                                     resolve(result)
                                 } else {
                                     result = true;
+                                    console.log('ok')
                                     resolve(result)
                                 }
                             });
@@ -230,6 +231,7 @@ app.post('/postToPullClass', urlencoded, function (req, res) {
     });
 
     var promise = new Promise((resolve, reject) => {
+        console.log(cookie)
         var handlecookie = cookie[0].split(';');
         var options = {
             hostname: "jwzx.hrbust.edu.cn",
@@ -253,6 +255,7 @@ app.post('/postToPullClass', urlencoded, function (req, res) {
             }
         }
         resolve(options)
+        
     })
     promise.then((options) => {
         return new Promise((resolve, reject) => {
@@ -270,12 +273,12 @@ app.post('/postToPullClass', urlencoded, function (req, res) {
                     var $ = cheerio.load(html, { decodeEntities: false });
                     var result = $.text().toString();
                     // console.log($)
-                    if (new RegExp('用户名或密码错误').test(result)) {
+                    if (new RegExp('错误').test(result)) {
                         // console.log(111)
                         res.redirect('./admin?username=' + username + '&error=3');
                         // reject('err')
                     } else if (new RegExp('验证码不正确').test(result)) {
-                        // console.log(222)
+                        console.log(222)
                         res.redirect('./admin?username=' + username + '&error=4');
                         // reject('err')
                     }
@@ -298,10 +301,10 @@ app.post('/postToPullClass', urlencoded, function (req, res) {
                 var str = '9Nhfj3'
 
                 randomstring += str;
-
+                console.log(response2.headers)
                 var handlecookie2 = response2.headers['set-cookie'];
                 if (handlecookie2 == undefined) {
-                    res.redirect('./admin?username=' + username + '&error=4');
+                    res.redirect('./admin?username=' + username + '&error=3');
                     // reject('err')
                 } else {
                     var cookie2 = handlecookie2[0].split(';')[0];

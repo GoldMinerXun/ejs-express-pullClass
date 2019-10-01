@@ -120,6 +120,7 @@ body {
   align-items: center;
 }
 .pull-mask .pull-modal .pull-input-wrap .checkcode .pull-img-wrap img {
+  cursor: pointer;
   margin: 0px;
   height: 100%;
   border: none;
