@@ -277,7 +277,7 @@ app.post('/postToPullClass', urlencoded, function (req, res) {
                         // console.log(111)
                         res.redirect('./admin?username=' + username + '&error=3');
                         // reject('err')
-                    } else if (new RegExp('验证码不正确').test(result)) {
+                    } else if (new RegExp('验证码').test(result)) {
                         console.log(222)
                         res.redirect('./admin?username=' + username + '&error=4');
                         // reject('err')
