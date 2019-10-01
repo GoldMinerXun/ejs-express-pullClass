@@ -271,11 +271,11 @@ app.post('/postToPullClass', urlencoded, function (req, res) {
                     var result = $.text().toString();
                     // console.log($)
                     if (new RegExp('用户名或密码错误').test(result)) {
-                        console.log(111)
+                        // console.log(111)
                         res.redirect('./admin?username=' + username + '&error=3');
                         // reject('err')
                     } else if (new RegExp('验证码不正确').test(result)) {
-                        console.log(222)
+                        // console.log(222)
                         res.redirect('./admin?username=' + username + '&error=4');
                         // reject('err')
                     }
@@ -347,7 +347,10 @@ app.post('/postToPullClass', urlencoded, function (req, res) {
 
             })
         })
-    }).then((resstr) => {
+    }).catch((err)=>{
+        res.redirect('/admin/?username=' + username + '&error=1');
+    })
+    .then((resstr) => {
         // console.log(resstr)
         if (resstr) {
             return new Promise((resolve, reject) => {
