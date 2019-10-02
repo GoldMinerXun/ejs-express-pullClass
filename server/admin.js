@@ -15,6 +15,7 @@ router.use(express.static('../server'))
 router.use(express.static('../admin'))
 router.get('/', function (req, res) {
     var cookie = req.headers.cookie;
+    console.log(cookie)
     var username = req.query.username;
     var errorcode = req.query.error;
     var codenum = 0;
@@ -114,5 +115,17 @@ router.get('/hascourses', function (req, res) {
         })
     }
 })
-
+router.get('/logout',function(req,res){
+    var promise=new Promise((resolve,reject)=>{
+        res.clearCookie('classuser');
+        resolve(true)
+    }) 
+    promise.then((result)=>{
+        return new Promise((resolve,reject)=>{
+            if(result){
+                res.redirect('/');
+            }
+        })
+    })
+})
 module.exports = router;

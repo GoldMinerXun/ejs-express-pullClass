@@ -1,6 +1,5 @@
 const express = require('express');
 const app = express();
-const path = require('path');
 const MongoControl = require('./tools/packagDB').MongoControl;
 const CookieTools = require('./tools/cookie').CookieTools;
 const HandleClassTables = require('./tools/handleClassTable').HandleClassTable;
@@ -77,7 +76,7 @@ app.post('/login', urlencoded, function (req, res) {
                 var objectID = data[0]._id;
                 var cookieProduce = new CookieTools(objectID);
                 var setcookie = cookieProduce.produceCookie();
-                res.setHeader('Set-Cookie',setcookie+';path=/;httponly');
+                res.setHeader('Set-Cookie','classuser'+setcookie+';path=/;httponly');
                 res.redirect('/admin?username=' + data[0].username);
             }
             else {

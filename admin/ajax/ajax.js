@@ -1,3 +1,6 @@
+import { resolve } from "dns";
+import { rejects } from "assert";
+
 var getClassBtn = document.getElementsByClassName('user-home-getclass')[0];
 var checkcodeimg = document.getElementsByClassName('pull-checkcode-img')[0];
 var submitPullBtn = document.getElementsByClassName('pull-submit-btn')[0];
@@ -27,28 +30,13 @@ img.addEventListener('click', function () {
         if (result) {
             return new Promise((resolve, reject) => {
                 console.log(111)
-                checkcodeimg.src = '../checkcodeimg/name.jpg?'+Math.random();
+                checkcodeimg.src = '../checkcodeimg/name.jpg?' + Math.random();
 
             })
         } else {
             return new Promise((resolve, reject) => {
                 location.href = './admin?username=' + username + '&error=5';
             })
-        }
-    })
-})
-logoutbtn.addEventListener('click', function () {
-    $.ajax({
-        type: 'get',
-        url: '/logout',
-        async: true,
-        success: function (result) {
-            if (result) {
-                console.log(result)
-            }
-        },
-        error: function (error) {
-            alert(error.status + "" + error.statusText);
         }
     })
 })
@@ -83,4 +71,18 @@ getClassBtn.addEventListener('click', function () {
         }
     })
 })
-
+logoutbtn.addEventListener('click', function () {
+    $.ajax({
+        type: "get",
+        url: "/logout",
+        async: true,
+        success: function (result) {
+            if (result) {
+                resolve(result)
+            }
+        },
+        error: function (error) {
+            alert(error.status + "" + error.statusText);
+        }
+    })
+})
