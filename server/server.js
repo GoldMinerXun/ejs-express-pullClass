@@ -76,7 +76,7 @@ app.post('/login', urlencoded, function (req, res) {
                 var objectID = data[0]._id;
                 var cookieProduce = new CookieTools(objectID);
                 var setcookie = cookieProduce.produceCookie();
-                res.setHeader('Set-Cookie','classuser'+setcookie+';path=/;httponly');
+                res.setHeader('Set-Cookie','classuser='+setcookie+';path=/;httponly');
                 res.redirect('/admin?username=' + data[0].username);
             }
             else {

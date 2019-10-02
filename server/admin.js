@@ -9,18 +9,19 @@ const ejs = require('ejs');
 const CookieTools = require('./tools/cookie').CookieTools;
 const mongodb = require('mongodb');
 const ObjectId = mongodb.ObjectId;
+const cookieParser = require('cookie-parser');
 
 user = new MongoControl('class', 'user');
-router.use(express.static('../server'))
-router.use(express.static('../admin'))
+router.use(express.static('../server'));
+router.use(express.static('../admin'));
+router.use(cookieParser('classuser'));
 router.get('/', function (req, res) {
-    var cookie = req.headers.cookie;
-    console.log(cookie)
+    var cookie = req.cookies.classuser;
     var username = req.query.username;
     var errorcode = req.query.error;
     var codenum = 0;
     var cookieTools = new CookieTools();
-    var cookieParser = cookieTools.parserCookie(cookie)
+    var cookieParser = cookieTools.parserCookie(cookie);
     if (errorcode != undefined) {
         var codenum = errorcode;
     }
@@ -77,7 +78,7 @@ router.get('/', function (req, res) {
 
 })
 router.get('/hascourses', function (req, res) {
-    var cookie = req.headers.cookie;
+    var cookie = req.cookies.classuser;
     var username = req.query.username;
     var nowweek = req.query.nowweek;
     var errorcode = req.query.error;
@@ -115,15 +116,15 @@ router.get('/hascourses', function (req, res) {
         })
     }
 })
-router.get('/logout',function(req,res){
-    var promise=new Promise((resolve,reject)=>{
+router.get('/logout', function (req, res) {
+    var promise = new Promise((resolve, reject) => {
         res.clearCookie('classuser');
         resolve(true)
-    }) 
-    promise.then((result)=>{
-        return new Promise((resolve,reject)=>{
-            if(result){
-                res.redirect('/');
+    })
+    promise.then((result) => {
+        return new Promise((resolve, reject) => {
+            if (result) {
+               res.send(true)
             }
         })
     })

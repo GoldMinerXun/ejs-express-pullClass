@@ -1,6 +1,3 @@
-import { resolve } from "dns";
-import { rejects } from "assert";
-
 var getClassBtn = document.getElementsByClassName('user-home-getclass')[0];
 var checkcodeimg = document.getElementsByClassName('pull-checkcode-img')[0];
 var submitPullBtn = document.getElementsByClassName('pull-submit-btn')[0];
@@ -74,11 +71,12 @@ getClassBtn.addEventListener('click', function () {
 logoutbtn.addEventListener('click', function () {
     $.ajax({
         type: "get",
-        url: "/logout",
+        url: "/admin/logout",
         async: true,
         success: function (result) {
+            console.log(111)
             if (result) {
-                resolve(result)
+                location.href='/'
             }
         },
         error: function (error) {

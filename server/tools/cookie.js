@@ -1,10 +1,10 @@
-
+const cookieParser = require('cookie-parser');
 class CookieTools {
     constructor(objectid) {
-        if(objectid){
+        if (objectid) {
             this.objectid = objectid.toString();
         }
-      
+
     }
     randomString() {
         var sixRandomWords = '';
@@ -26,20 +26,18 @@ class CookieTools {
         var cookiestr = 'CoolClassTable' + this.objectid + this.randomString();
         return cookiestr;
     }
-    parserCookie(str){
-        var cookiestr=str;
-        if(str){
-            if(str.length>0){
-                var objectid=cookiestr.slice(14,38);
+    parserCookie(str) {
+        var cookiestr = str;
+        if (str) {
+            if (str.length > 0) {
+                var objectid = cookiestr.slice(14, 38);
                 return objectid;
-            }else{
+            } else {
                 return false;
             }
-        }else{
+        } else {
             return false;
         }
-        
-        
     }
 }
 

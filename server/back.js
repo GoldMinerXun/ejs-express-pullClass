@@ -7,13 +7,17 @@ const manager =new MongoControl('class','manager');
 const bodyParser = require('body-parser');
 const urlencoded = bodyParser.urlencoded({ extended: false });
 const CookieTools = require('./tools/cookie').CookieTools;
+const cookieParser = require('cookie-parser');
 
+router.use(cookieParser('manager'));
 router.use(express.static('../server'));
 router.use(express.static('../admin'));
 router.use(express.static('../backstage'));
 
 router.get('/', function (req, res) {
-    if (req.headers.cookie) {
+   var cookieresult=req.cookies.manager;
+//    console.log(cookieresult);
+    if (cookieresult) {
         var promise = new Promise((resolve, reject) => {
             user.find({}, function (err, mongodata) {
                 if (err) {
@@ -36,7 +40,7 @@ router.get('/', function (req, res) {
         })
 
     }else{
-        ejs.renderFile('../backstage/index.ejs',{mongodata:[],isLogin:false},function(err,result){
+        ejs.renderFile('../backstage/index.ejs',{mongodata:[{nodata:null}],isLogin:false},function(err,result){
             if(err)
             {
                 reject(err)
@@ -48,7 +52,7 @@ router.get('/', function (req, res) {
 
 router.post('/login',urlencoded,function(req,res){
     var password=req.body.password;
-    console.log(password)
+    // console.log(password)
     var promise=new Promise((resolve,reject)=>{
         manager.find({password:password},function(err,mongodata){
             if(err){
@@ -64,7 +68,7 @@ router.post('/login',urlencoded,function(req,res){
                 var objectID=result[0]._id;
                 var cookieProduce = new CookieTools(objectID);
                 var setcookie = cookieProduce.produceCookie();
-                res.setHeader('Set-Cookie','class='+setcookie+';path=/;httponly');
+                res.setHeader('Set-Cookie','manager='+setcookie+';path=/;httponly');
                 resolve(true)
             }
         })
@@ -77,4 +81,17 @@ router.post('/login',urlencoded,function(req,res){
     });
 })
 
+router.get('/logout',function(req,res){
+    var promise = new Promise((resolve, reject) => {
+        res.clearCookie('manager');
+        resolve(true)
+    })
+    promise.then((result)=>{
+        return new Promise((resolve,reject)=>{
+            if(result){
+                res.send(true)
+            }
+        })
+    })
+})
 module.exports = router;

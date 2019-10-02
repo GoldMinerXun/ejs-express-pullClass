@@ -140,3 +140,55 @@ body {
 .back-stage-pull-mask form .back-stage-pull-wrap .back-stage-btn-wrap button:hover {
   background: linear-gradient(to bottom, #f3f3f3, #eaeaea);
 }
+.back-stage-wrap {
+  width: 100%;
+  min-width: 1000px;
+}
+.back-stage-wrap table {
+  width: 80%;
+  margin: 0 auto;
+  margin-top: 130px;
+  background: #FFF;
+  font-size: 12px;
+  border-top: 1px solid #E1E6EB;
+  border: 1px solid #E1E6EB;
+  border-spacing: 0;
+}
+.back-stage-wrap table thead {
+  font-weight: normal;
+  color: #999;
+  border-bottom: 1px solid #E1E6EB;
+  background-color: #F5F6FA;
+}
+.back-stage-wrap table thead tr {
+  background-color: #F5F6FA;
+}
+.back-stage-wrap table thead tr .checkbox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.back-stage-wrap table thead tr th {
+  text-align: left;
+  padding: 10px 30px;
+  background-color: #F5F6FA;
+  font-size: 12px;
+  font-weight: 300;
+}
+.back-stage-wrap table tbody tr .checkbox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.back-stage-wrap table tbody tr td {
+  text-align: left;
+  padding: 10px 30px;
+}
+.back-stage-wrap table tbody tr td a {
+  color: #06C;
+  text-decoration: none;
+}
+.back-stage-wrap table tbody tr td a:hover {
+  color: #2a6496;
+  text-decoration: underline;
+}

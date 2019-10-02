@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <link rel="stylesheet" href="./css/backstage.css">
+    <script src="./ajax/jquery-2.1.0.js"></script>
 </head>
 
 <body>
@@ -46,7 +47,7 @@
         <table class="back-stage-table">
             <thead>
                 <tr>
-                    <th>
+                    <th class="checkbox">
                         <input type="checkbox">
                     </th>
                     <th>
@@ -58,18 +59,40 @@
                     <th>
                         <span>password</span>
                     </th>
+                    <th>
+                        <span>Operations</span>
+                    </th>
                 </tr>
             </thead>
-            <tbody>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
+            <tbody id="tbody">
+               
             </tbody>
         </table>
     </div>
 </body>
+<script src="./ajax/back_ajax.js"></script>
+<script>
+    if ('<%=isLogin%>') {
+       var result=JSON.parse('<%-JSON.stringify(mongodata)%>');
+       var html='';
+       result.forEach(element => {
+           var item=`<tr>
+                    <td class="checkbox">  
+                        <input type="checkbox">  
+                    </td>
+                    <td>`+element._id+`</td>
+                    <td>`+element.username+`</td>
+                    <td>`+element.password+`</td>
+                    <td>
+                        <a href='/back/delete?id=`+element._id+`'>删除</a>
+                        <a href='/back/modify?id=`+element._id+`'>修改</a>
+                    </td>
+                </tr>`
+                html+=item;
+       });
+       var tbody=$('#tbody');
+       tbody.append(html);
+    }
+</script>
 
 </html>
