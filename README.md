@@ -10,6 +10,11 @@
 |   └── css                             // 前端样式
 |   └── image                           // 封面背景图
 |
+├── backstage                           // 后台管理界面
+|   └── ajax                            // 发送ajax请求
+|   └── css                             // 前端样式
+|   └── img                             // 相关icon图片
+|
 ├── server                      
 │   └── app.js                          // 多线程监控
 │   └── server.js                       // 主页相关http请求

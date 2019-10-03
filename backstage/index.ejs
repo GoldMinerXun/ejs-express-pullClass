@@ -44,6 +44,34 @@
 
     </div>
     <div class="back-stage-wrap">
+        <div class="back-stage-wrap-top">
+            <div class="back-stage-top-title">
+                <div class="back-stage-title-text">
+                    <span>User information list</span>
+                </div>
+                <div class="back-stage-btn-wrap">
+                    <button class="update-btn"><img src="./img/update.png" alt=""></button>
+                    <button class="create-btn">创建用户</button>
+                </div>
+            </div>
+            <div class="back-stage-search-wrap">
+                <form class="back-stage-search-input-wrap">
+                    <div class="back-stage-down-wrap back-stage-down-btn">
+                        <img src="./img/down.png" alt="">
+                        <ul class="down-list">
+                            <li class="item" id="item-0">auto recognize</li>
+                            <li class="item" id="item-1">_id</li>
+                            <li class="item" id="item-2">username</li>
+                        </ul>
+                    </div>
+                    <div class="back-stage-search-span-input">
+                        <input class="back-stage-search-input" placeholder="Please select a query attribute" type="text">
+                    </div>
+
+                    <button><img src="./img/search.png" alt=""></button>
+                </form>
+            </div>
+        </div>
         <table class="back-stage-table">
             <thead>
                 <tr>
@@ -65,33 +93,34 @@
                 </tr>
             </thead>
             <tbody id="tbody">
-               
+
             </tbody>
         </table>
     </div>
 </body>
+<script src="./index.js"></script>
 <script src="./ajax/back_ajax.js"></script>
 <script>
     if ('<%=isLogin%>') {
-       var result=JSON.parse('<%-JSON.stringify(mongodata)%>');
-       var html='';
-       result.forEach(element => {
-           var item=`<tr>
+        var result = JSON.parse('<%-JSON.stringify(mongodata)%>');
+        var html = '';
+        result.forEach(element => {
+            var item = `<tr>
                     <td class="checkbox">  
                         <input type="checkbox">  
                     </td>
-                    <td>`+element._id+`</td>
-                    <td>`+element.username+`</td>
-                    <td>`+element.password+`</td>
+                    <td>`+ element._id + `</td>
+                    <td>`+ element.username + `</td>
+                    <td>`+ element.password + `</td>
                     <td>
-                        <a href='/back/delete?id=`+element._id+`'>删除</a>
-                        <a href='/back/modify?id=`+element._id+`'>修改</a>
+                        <a href='/back/delete?id=`+ element._id + `'>删除</a>
+                        <a href='/back/modify?id=`+ element._id + `'>修改</a>
                     </td>
                 </tr>`
-                html+=item;
-       });
-       var tbody=$('#tbody');
-       tbody.append(html);
+            html += item;
+        });
+        var tbody = $('#tbody');
+        tbody.append(html);
     }
 </script>
 
