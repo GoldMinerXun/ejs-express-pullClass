@@ -8,6 +8,21 @@
     <title>Document</title>
     <link rel="stylesheet" href="./css/backstage.css">
     <script src="./ajax/jquery-2.1.0.js"></script>
+    <script>
+        document.onreadystatechange = function () {
+            // console.log(222)
+            // console.log(document.readyState)
+            if (document.readyState == "complete") {
+                // console.log(111)
+                $('.back-stage-loading').css({
+                    display: 'none'
+                })
+                $('.back-stage-wrap').css({
+                    filter: 'blur(0px)'
+                });
+            }
+        }
+    </script>
 </head>
 
 <body>
@@ -55,7 +70,7 @@
                 </div>
             </div>
             <div class="back-stage-search-wrap">
-                <form class="back-stage-search-input-wrap">
+                <form action="/back/search" method="POST" class="back-stage-search-input-wrap">
                     <div class="back-stage-down-wrap back-stage-down-btn">
                         <img src="./img/down.png" alt="">
                         <ul class="down-list">
@@ -65,10 +80,10 @@
                         </ul>
                     </div>
                     <div class="back-stage-search-span-input">
-                        <input class="back-stage-search-input" placeholder="Please select a query attribute" type="text">
+                        <input class="back-stage-search-input" placeholder="Please select a query attribute" type="text"
+                            name="auto">
                     </div>
-
-                    <button><img src="./img/search.png" alt=""></button>
+                    <button type="submit"><img src="./img/search.png" alt=""></button>
                 </form>
             </div>
         </div>
@@ -89,6 +104,7 @@
                     </th>
                     <th>
                         <span>Operations</span>
+                       
                     </th>
                 </tr>
             </thead>
@@ -97,31 +113,52 @@
             </tbody>
         </table>
     </div>
+    <div class="back-stage-loading">
+        <div class="back-loading-bcg">
+            <img src="./img/loading.gif" alt="">
+        </div>
+    </div>
+    <div class="tips">
+        <span class="tips-text">sorry, no this document...</span>
+    </div>
 </body>
-<script src="./index.js"></script>
-<script src="./ajax/back_ajax.js"></script>
+
+
 <script>
     if ('<%=isLogin%>') {
         var result = JSON.parse('<%-JSON.stringify(mongodata)%>');
         var html = '';
-        result.forEach(element => {
-            var item = `<tr>
+        if (result[0].hasOwnProperty('nodata')) {
+            $('.tips').css({
+                display:'flex'
+            })
+            setTimeout(function(){
+                $('.tips').css({
+                display:'none'
+            })
+            },3000);
+        } else {
+            result.forEach(element => {
+                var item = `<tr>
                     <td class="checkbox">  
                         <input type="checkbox">  
                     </td>
-                    <td>`+ element._id + `</td>
+                    <td class="_id">`+ element._id + `</td>
                     <td>`+ element.username + `</td>
                     <td>`+ element.password + `</td>
-                    <td>
-                        <a href='/back/delete?id=`+ element._id + `'>删除</a>
-                        <a href='/back/modify?id=`+ element._id + `'>修改</a>
+                    <td class="btn">
+                        <span class='delete' id='delete-`+element._id + `'>删除</span>
+                        <span class='modify' id='modify-`+element._id + `'>修改</span>
                     </td>
                 </tr>`
-            html += item;
-        });
-        var tbody = $('#tbody');
-        tbody.append(html);
+                html += item;
+            });
+            var tbody = $('#tbody');
+            tbody.append(html);
+        }
+
     }
 </script>
-
+<script src="./index.js"></script>
+<script src="./ajax/back_ajax.js"></script>
 </html>
