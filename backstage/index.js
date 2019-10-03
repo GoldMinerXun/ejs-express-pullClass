@@ -31,11 +31,23 @@ $('.down-list').click(function (e) {
 $('.update-btn').click(function () {
     location.href = '/back'
 })
+
 $('table td').click(function () {
-    console.log()
-    if ((!$(this).is('.input')) && $(this).attr('class') != "checkbox" &&  $(this).attr('class') != "btn"&& $(this).attr('class') != "_id") {
+    if ((!$(this).is('.input')) && $(this).attr('class') != "checkbox" && $(this).attr('class') != "btn" && $(this).attr('class') != "_id") {
         $(this).addClass('input').html('<input type="text" class="td-input" value="' + $(this).text() + '" />').find('input').focus().blur(function () {
             $(this).parent().removeClass('input').html($(this).val() || 0);
         });
     }
 })
+
+$('.create-btn').click(function(){
+    $('.add-new-user-wrap').css({
+        display:'flex'
+    })
+})
+$('.add-user-cancel-btn').click(function () {
+    $('.add-new-user-wrap').css({
+        display:'none'
+    })
+})
+

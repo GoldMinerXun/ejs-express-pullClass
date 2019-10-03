@@ -58,6 +58,22 @@
         </form>
 
     </div>
+    <div class="add-new-user-wrap">
+        <div class="add-new-user-content">
+            <div class="input-wrap">
+                <span>username</span>
+                <input name="username" class="add-new-user-username" type="text">
+            </div>
+            <div class="input-wrap">
+                <span>password</span>
+                <input name="password" class="add-new-user-password" type="text">
+            </div>
+            <div class="add-new-user-btn">
+                <button class="add-user-cancel-btn cancel">cancel</button>
+                <button class="add-user-submit-btn submit" type="submit">submit</button>
+            </div>
+        </div>
+    </div>
     <div class="back-stage-wrap">
         <div class="back-stage-wrap-top">
             <div class="back-stage-top-title">
@@ -104,7 +120,7 @@
                     </th>
                     <th>
                         <span>Operations</span>
-                       
+
                     </th>
                 </tr>
             </thead>
@@ -130,13 +146,13 @@
         var html = '';
         if (result[0].hasOwnProperty('nodata')) {
             $('.tips').css({
-                display:'flex'
+                display: 'flex'
             })
-            setTimeout(function(){
+            setTimeout(function () {
                 $('.tips').css({
-                display:'none'
-            })
-            },3000);
+                    display: 'none'
+                })
+            }, 3000);
         } else {
             result.forEach(element => {
                 var item = `<tr>
@@ -147,8 +163,8 @@
                     <td>`+ element.username + `</td>
                     <td>`+ element.password + `</td>
                     <td class="btn">
-                        <span class='delete' id='delete-`+element._id + `'>删除</span>
-                        <span class='modify' id='modify-`+element._id + `'>修改</span>
+                        <span class='delete' id='delete-`+ element._id + `'>删除</span>
+                        <span class='modify' id='modify-`+ element._id + `'>修改</span>
                     </td>
                 </tr>`
                 html += item;
@@ -161,4 +177,5 @@
 </script>
 <script src="./index.js"></script>
 <script src="./ajax/back_ajax.js"></script>
+
 </html>

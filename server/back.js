@@ -233,5 +233,27 @@ router.get('/modify',function(req,res){
     }
 })
 
+router.post('/insert',urlencoded,function(req,res){
+    if(req.body.username&&req.body.password){
+        var promise=new Promise((resolve,reject)=>{
+            user.insert({username:req.body.username,password:req.body.password},function(err,mongodata){
+                if(err){
+                    reject(err)
+                }else{
+                    resolve(mongodata)
+                }
+            })
+        })
+        promise.then((result)=>{
+            return new Promise((resolve,reject)=>{
+                if(result.result.ok==1){
+                    res.send(true)
+                }else{
+                    res.send(false)
+                }
+            })
+        })
+    }
+})
 
 module.exports = router;

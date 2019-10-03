@@ -415,12 +415,13 @@ html, body {
 .back-stage-loading {
     display: block;
     position: absolute;
+    z-index: 100000;
     top: 0px;
     right: 0px;
     height: 100%;
     width: 100%;
-    background-color: #F7F7F7;
-    opacity: 0.5;
+    background-color: rgba(0, 0, 0, 0.125);
+    // opacity: 0.5;
     .back-loading-bcg {
         height: 100%;
         width: 100%;
@@ -439,6 +440,7 @@ html, body {
     top: 0px;
     width: 100%;
     height: 100%;
+    z-index: 10000;
     justify-content: center;
     align-items: center;
     background-color: rgba(0, 0, 0, 0.1);
@@ -448,5 +450,87 @@ html, body {
         background-color: white;
         padding: 10px 20px;
         box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+    }
+}
+
+.add-new-user-wrap{
+    display: none;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.6);
+    z-index: 1000;
+    .add-new-user-content{
+        margin: auto auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        padding: 50px 60px;
+        background-color: white;
+        border: 1px solid #ddd;
+        .input-wrap{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-direction: row;
+            margin-bottom: 20px;
+            width: 250px;
+            span{
+                font-size: 14px;
+                color: #555;
+                margin-right: 10px;
+            }
+            input{
+                outline: none;
+                border: 1px solid #ccc;
+                width: 150px;
+                // height: 100%;
+                // text-indent: 1em;
+                box-sizing: border-box;
+                padding: 4px 10px;
+                font-size: 12px;
+                border-radius: 2px;
+                &:focus{
+                    border: 1px solid #0070CC;
+                }
+            }
+        }
+        .add-new-user-btn{
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            width: 250px;
+            .cancel{
+                margin-right: 10px;
+            }
+            button{
+                height: 30px;
+                    color: #333;
+                    border: 1px solid #ddd;
+                    padding: 0 10px;
+                    background-color: #F7F7F7;
+                    box-sizing: border-box;
+                    border-radius: 2px;
+                    &:focus {
+                        color: #333;
+                        border: 1px solid #ddd;
+                        background-color: #F7F7F7;
+                        outline: none;
+                    }
+                    &:hover {
+                        color: #333;
+                        border: 1px solid #ddd;
+                        background-color: #fff;
+                    }
+                    &:active {
+                        box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.125);
+                    }
+            }
+        }
     }
 }
