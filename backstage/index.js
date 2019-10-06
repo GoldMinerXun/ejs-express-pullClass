@@ -1,3 +1,5 @@
+var global_item_check=0;
+
 $('.back-stage-down-btn').mouseenter(function () {
     $('.down-list').css({
         display: 'block'
@@ -50,4 +52,43 @@ $('.add-user-cancel-btn').click(function () {
         display:'none'
     })
 })
+// 全选
+$('.all-checked').click(function(){
+    $('.item-checked').prop('checked',$(this).is(":checked"));
+    if($(this).is(':checked')){
+       global_item_check=$('.item-checked').length;
+    }else{
+        global_item_check=0;
+    }
+})
 
+$('.item-checked').click(function(){
+    console.log($(this).prop('checked'))
+    if($(this).prop('checked')){
+        global_item_check++;
+        // $('.some-checked').prop('checked',true);
+        if(global_item_check==$('.item-checked').length){
+            $('.all-checked').prop('checked',true);
+        }
+        // $('.selected-btn-default').addClass('selected-btn-active');
+    }else{
+        global_item_check--;
+        if(global_item_check<$('.item-checked').length){
+            $('.all-checked').prop('checked',false);
+        }
+        if(global_item_check==0){
+            // $('.some-checked').prop('checked',false);
+           
+            // $('.selected-btn-default').removeClass('selected-btn-active');
+        }
+    }
+})
+
+// $('.some-checked').click(function(){
+//     $('.item-checked').prop('checked',$(this).is(":checked"));
+//     if($(this).is(':checked')){
+//         global_item_check=$('.item-checked').length;
+//      }else{
+//          global_item_check=0;
+//      }
+// })

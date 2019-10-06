@@ -27,6 +27,7 @@ router.get('/', function (req, res) {
                 if (err) {
                     reject(err)
                 } else {
+                    // console.log(mongodata)
                     resolve(mongodata)
                 }
             })
@@ -256,4 +257,13 @@ router.post('/insert',urlencoded,function(req,res){
     }
 })
 
+// router.get('/deleteselected',function(req,res){
+//     if(req.query.info){
+//         var info=req.query.info;
+//         info.forEach((value,index)=>{
+//             info[index]._id=ObjectId(info[index]._id);
+//         })
+//         var 
+//     }
+// })
 module.exports = router;

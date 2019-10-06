@@ -16,7 +16,7 @@ logoutbtn.addEventListener('click', function () {
         }
     });
 })
-var loading=function(){
+var loading = function () {
     $('.back-stage-loading').css({
         display: 'flex'
     })
@@ -24,7 +24,7 @@ var loading=function(){
         filter: 'blur(2px)'
     });
 }
-var showmessage=function(result,message){
+var showmessage = function (result, message) {
     $('.back-stage-loading').css({
         display: 'none'
     })
@@ -32,7 +32,7 @@ var showmessage=function(result,message){
         filter: 'blur(0px)'
     });
     if (result) {
-        $('.tips-text').text(message+' success').css({
+        $('.tips-text').text(message + ' success').css({
             color: 'green',
             borderColor: 'green'
         })
@@ -44,9 +44,9 @@ var showmessage=function(result,message){
                 display: 'none'
             })
         }, 3000);
-      return true
-    }else{
-        $('.tips-text').text(message+' success').css({
+        return true
+    } else {
+        $('.tips-text').text(message + ' success').css({
             color: 'red',
             borderColor: 'red'
         })
@@ -99,16 +99,16 @@ for (let i = 0; i < deletebtn.length; i++) {
                 $('.back-stage-wrap').css({
                     filter: 'blur(0px)'
                 });
-               var result= showmessage(response,'delete');
-               resolve(result)
+                var result = showmessage(response, 'delete');
+                resolve(result)
             }).catch((e) => { })
-        }).then((result)=>{
-            return new Promise((resolve,reject)=>{
+        }).then((result) => {
+            return new Promise((resolve, reject) => {
                 console.log(111)
-                location.href='/back'
+                location.href = '/back'
                 location.reload();
             })
-           
+
         })
     })
 }
@@ -146,13 +146,13 @@ $('.modify').click(function (e) {
     var _id = $('table').find('tr').eq(cur + 1).find('td').eq(1).text();
     modifyajax(_id, username, password).then((result) => {
         return new Promise((resolve, reject) => {
-            var result1= showmessage(result,'modify');
+            var result1 = showmessage(result, 'modify');
             resolve(result1)
         })
-    }).then((result)=>{
-        return new Promise((resolve,reject)=>{
+    }).then((result) => {
+        return new Promise((resolve, reject) => {
             console.log(111)
-            location.href='/back'
+            location.href = '/back'
             location.reload();
         })
     })
@@ -183,15 +183,54 @@ $('.add-user-submit-btn').click(() => {
     loading();
     addnewuserajax(username, password).then((result) => {
         return new Promise((resolve, reject) => {
-            var result1= showmessage(result,'create');
+            var result1 = showmessage(result, 'create');
             resolve(result1)
         })
-    }).then((result)=>{
-        return new Promise((resolve,reject)=>{
+    }).then((result) => {
+        return new Promise((resolve, reject) => {
             console.log(111)
-            location.href='/back'
+            location.href = '/back'
             location.reload();
         })
-       
+
     })
 })
+// var deleteallajax = function (selectedinfo) {
+//     return new Promise((resolve,reject)=>{
+//         $.ajax({
+//             type:'get',
+//             url:'/back/deleteselected',
+//             data:{info:selectedinfo},
+//             success:function(result){
+//                 if(result){
+//                     resolve(true)
+//                 }else{
+//                     resolve(false)
+//                 }
+     
+//             },
+//             error:function(){
+//                 reject(err)
+//             }
+//         })
+//     })
+// }
+// $('.selected-delete').click(() => {
+//     loading();
+//     var selectedinfo;
+//     for(let i=0;i<$('.item-checked').length;i++){
+//         if($('.item-checked').eq(i).prop('checked')){
+//             var cur = $('.item-checked').eq(i).parent().parent().find('tr').index($(this).parent().parent());
+//             var _id = $('table').find('tr').eq(cur + 1).find('td').eq(1).text();
+//             var temp={
+//                 _id:_id
+//             }
+//             selectedinfo.push({...temp});
+//         }
+//     }
+//     deleteajax(selectedinfo).then((result)=>{
+//         return new Promise((resolve,reject)=>{
+
+//         })
+//     })
+// })

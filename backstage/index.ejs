@@ -107,7 +107,7 @@
             <thead>
                 <tr>
                     <th class="checkbox">
-                        <input type="checkbox">
+                        <input type="checkbox" class="all-checked">
                     </th>
                     <th>
                         <span>_id</span>
@@ -123,9 +123,10 @@
 
                     </th>
                 </tr>
+
             </thead>
             <tbody id="tbody">
-
+             
             </tbody>
         </table>
     </div>
@@ -135,13 +136,13 @@
         </div>
     </div>
     <div class="tips">
-        <span class="tips-text">sorry, no this document...</span>
+        <span class="tips-text"></span>
     </div>
 </body>
 
 
 <script>
-    if ('<%=isLogin%>') {
+    if ('<%=isLogin%>' == 'true') {
         var result = JSON.parse('<%-JSON.stringify(mongodata)%>');
         var html = '';
         if (result[0].hasOwnProperty('nodata')) {
@@ -157,7 +158,7 @@
             result.forEach(element => {
                 var item = `<tr>
                     <td class="checkbox">  
-                        <input type="checkbox">  
+                        <input type="checkbox" class="item-checked `+ element._id + `">  
                     </td>
                     <td class="_id">`+ element._id + `</td>
                     <td>`+ element.username + `</td>
@@ -169,6 +170,18 @@
                 </tr>`
                 html += item;
             });
+            // var lastrow = `<tr>
+            //     <td  class="checkbox">
+            //         <input type="checkbox" class="item-checked some-checked">
+            //     </td>
+            //     <td colspan="4">   
+            //         <div class="btn-wrap">
+            //             <button class="selected-delete selected-btn-default">删除</button>
+            //             <button class="selected-modify selected-btn-default">修改</button>
+            //         </div>
+            //     </td>
+            // </tr>`
+            // html += lastrow;
             var tbody = $('#tbody');
             tbody.append(html);
         }
